@@ -1,5 +1,6 @@
 package com.soutaka.repiro.view.component.top_bar
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -18,15 +19,15 @@ import androidx.compose.ui.text.style.TextAlign
 import com.soutaka.repiro.ui.theme.APP_COLOR
 
 @Composable
-fun MainTopAppBar(
+fun CommonTopAppBar(
     title: String,
-//    onNavigationClick: () -> Unit,
-//    onActionClick: () -> Unit,
-//    navigationIcon: ImageVector,   // カスタムナビゲーションアイコン
-//    actionIcon: ImageVector,       // カスタムアクションアイコン
-    backgroundColor: Color = APP_COLOR, // 背景色
-    contentColor: Color = Color.White,   // テキストとアイコンの色
-    modifier: Modifier = Modifier        // 外部からModifierを適用できるように
+    //    onNavigationClick: () -> Unit,
+    //    onActionClick: () -> Unit,
+    //    navigationIcon: ImageVector,   // カスタムナビゲーションアイコン
+    //    actionIcon: ImageVector,       // カスタムアクションアイコン
+    backgroundColor: Color = APP_COLOR,
+    contentColor: Color = Color.White,
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
@@ -47,7 +48,7 @@ fun MainTopAppBar(
                 modifier = Modifier
                     .padding(start = 16.dp)
                     .size(24.dp)
-                    .clickable {  }
+                    .clickable { }
             )
             Text(
                 text = title,
@@ -63,7 +64,7 @@ fun MainTopAppBar(
                 modifier = Modifier
                     .padding(end = 16.dp)
                     .size(24.dp)
-                    .clickable {  }
+                    .clickable { }
             )
         }
     }

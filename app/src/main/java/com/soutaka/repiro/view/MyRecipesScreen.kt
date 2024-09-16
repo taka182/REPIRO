@@ -10,13 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import com.soutaka.repiro.view.component.top_bar.MainTopAppBar
+import com.soutaka.repiro.view.component.top_bar.CommonTopAppBar
 
 @Composable
 fun MyRecipeScreen() {
     Scaffold(
         topBar = {
-            MainTopAppBar(
+            CommonTopAppBar(
                 title = "MyRecipes",
             )
         },
