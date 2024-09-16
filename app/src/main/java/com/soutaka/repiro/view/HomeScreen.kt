@@ -9,27 +9,38 @@ import androidx.compose.ui.Modifier
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.testTag
+import com.soutaka.repiro.view.component.top_bar.CommonTopAppBar
 
 
 @Composable
 fun HomeScreen() {
     var isDarkTheme by remember { mutableStateOf(false) }
-    Surface(
-        modifier = Modifier
-            .fillMaxSize()
-            .testTag("HomeScreen"),
-    ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-        ) {
-            // テーマを切り替えるボタン
-            Button(onClick = {
-                isDarkTheme = !isDarkTheme
-            }) {
-                Text(text = "Toggle Theme")
+    Scaffold(
+        topBar = {
+            CommonTopAppBar(
+                title = "Home",
+            )
+        },
+        content = { innerPadding ->
+            Surface(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .testTag("HomeScreen"),
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                ) {
+                    // テーマを切り替えるボタン
+                    Button(onClick = {
+                        isDarkTheme = !isDarkTheme
+                    }) {
+                        Text(text = "Toggle Theme")
+                    }
+                    Text(text = "Welcome to Home Screen!")
+                }
             }
-            Text(text = "Welcome to Home Screen!")
         }
-    }
+    )
 }
