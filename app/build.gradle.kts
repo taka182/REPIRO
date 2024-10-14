@@ -73,4 +73,5 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.coil.compose)
 }

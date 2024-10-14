@@ -1,39 +1,69 @@
 package com.soutaka.repiro.view
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.soutaka.repiro.view.component.card.RecipeCard
 import com.soutaka.repiro.view.component.top_bar.CommonTopAppBar
 
 @Composable
 fun FavoriteRecipesScreen() {
-    Scaffold(
-        topBar = {
-            CommonTopAppBar(
-                title = "FavoriteRecipes",
-            )
-        },
-        content = { innerPadding ->
-            Surface(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-                    .testTag("FavoriteRecipesScreen"),
-            ) {
-                Column(
+    val testRecipeData = testRecipe()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag("MyRecipesScreen"),
+    ) {
+        CommonTopAppBar(
+            title = "MyRecipes"
+        )
+
+        Box(
+            modifier = Modifier.weight(1f)
+        ) {
+            if (testRecipeData.isEmpty()) {
+                Box(
                     modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
+                    contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "Welcome to FavoriteRecipes Screen!")
+                    Text(
+                        text = "Let's Cooking!",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+                return
+            }
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(testRecipeData.size) { index ->
+                    val recipe = testRecipeData[index]
+                    RecipeCard(
+                        imageUrl = recipe.imageUrl,
+                        recipeName = recipe.name,
+                        isBookmarked = recipe.isBookmarked,
+                        cookingTime = recipe.cookingTime,
+                        genre = recipe.genre,
+                        starRating = recipe.starRating,
+                        description = recipe.description
+                    )
                 }
             }
         }
-    )
+    }
 }
